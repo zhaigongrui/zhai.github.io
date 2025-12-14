@@ -1,5 +1,128 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://zhaigongrui.github.io/zhai.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://zhaigongrui.github.io/zhai.github.io</link></image><lastBuildDate>Sun, 14 Dec 2025 03:49:32 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster><item><title>翟的个人博客</title><link>https://zhaigongrui.github.io/zhai.github.io/post/zhai-de-ge-ren-bo-ke.html</link><description>姓名：翟公瑞
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://zhaigongrui.github.io/zhai.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://zhaigongrui.github.io/zhai.github.io</link></image><lastBuildDate>Sun, 14 Dec 2025 16:47:36 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster><item><title>zhaii个人博客</title><link>https://zhaigongrui.github.io/zhai.github.io/post/zhaii-ge-ren-bo-ke.html</link><description>&lt;!DOCTYPE html&gt;
+&lt;html lang='zh-CN'&gt;
+&lt;head&gt;
+    &lt;meta charset='UTF-8'&gt;
+    &lt;meta name='viewport' content='width=device-width, initial-scale=1.0'&gt;
+    &lt;title&gt;翟公瑞的个人博客&lt;/title&gt;
+    &lt;!-- 引入Tailwind CSS简化样式开发 --&gt;
+    &lt;script src='https://cdn.tailwindcss.com'&gt;&lt;/script&gt;
+    &lt;!-- 引入Font Awesome图标 --&gt;
+    &lt;link href='https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css' rel='stylesheet'&gt;
+    &lt;!-- 自定义Tailwind配置 --&gt;
+    &lt;script&gt;
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#475569',
+                        accent: '#f97316',
+                        light: '#f8fafc',
+                        dark: '#0f172a'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    &lt;/script&gt;
+    &lt;style type='text/tailwindcss'&gt;
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .blog-card-hover {
+                @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+            }
+            .nav-link {
+                @apply px-4 py-2 rounded-md hover:bg-primary/10 transition-colors duration-200;
+            }
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body class='bg-gray-50 text-dark'&gt;
+    &lt;!-- 导航栏 --&gt;
+    &lt;header class='sticky top-0 z-50 bg-white shadow-sm'&gt;
+        &lt;div class='container mx-auto px-4 sm:px-6 lg:px-8'&gt;
+            &lt;div class='flex justify-between items-center h-16'&gt;
+                &lt;!-- 左侧logo/名称 --&gt;
+                &lt;div class='flex items-center space-x-2'&gt;
+                    &lt;i class='fa fa-book text-primary text-2xl'&gt;&lt;/i&gt;
+                    &lt;div&gt;
+                        &lt;h1 class='text-xl font-bold text-primary'&gt;翟公瑞的博客&lt;/h1&gt;
+                        &lt;p class='text-xs text-gray-500'&gt;学号：20242800005&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                
+                &lt;!-- 桌面端导航 --&gt;
+                &lt;nav class='hidden md:flex space-x-1'&gt;
+                    &lt;a href='#home' class='nav-link text-primary font-medium'&gt;首页&lt;/a&gt;
+                    &lt;a href='#blogs' class='nav-link text-secondary'&gt;博客列表&lt;/a&gt;
+                    &lt;a href='#categories' class='nav-link text-secondary'&gt;分类&lt;/a&gt;
+                    &lt;a href='#about' class='nav-link text-secondary'&gt;关于我&lt;/a&gt;
+                &lt;/nav&gt;
+                
+                &lt;!-- 移动端菜单按钮 --&gt;
+                &lt;button id='menuBtn' class='md:hidden text-secondary hover:text-primary'&gt;
+                    &lt;i class='fa fa-bars text-xl'&gt;&lt;/i&gt;
+                &lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;!-- 移动端导航菜单 --&gt;
+        &lt;div id='mobileMenu' class='md:hidden hidden bg-white border-t border-gray-100'&gt;
+            &lt;div class='container mx-auto px-4 py-2 flex flex-col space-y-1'&gt;
+                &lt;a href='#home' class='nav-link text-primary font-medium'&gt;首页&lt;/a&gt;
+                &lt;a href='#blogs' class='nav-link text-secondary'&gt;博客列表&lt;/a&gt;
+                &lt;a href='#categories' class='nav-link text-secondary'&gt;分类&lt;/a&gt;
+                &lt;a href='#about' class='nav-link text-secondary'&gt;关于我&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;!-- 首页横幅 --&gt;
+        &lt;section id='home' class='bg-gradient-to-r from-primary to-blue-700 text-white py-16 md:py-24'&gt;
+            &lt;div class='container mx-auto px-4 sm:px-6 lg:px-8'&gt;
+                &lt;div class='max-w-3xl mx-auto text-center'&gt;
+                    &lt;h2 class='text-3xl md:text-4xl lg:text-5xl font-bold mb-4'&gt;
+                        欢迎来到翟公瑞的个人博客
+                    &lt;/h2&gt;
+                    &lt;p class='text-lg md:text-xl opacity-90 mb-8'&gt;
+                        记录学习历程，分享技术心得，探索编程世界
+                    &lt;/p&gt;
+                    &lt;a href='#blogs' class='inline-block bg-white text-primary font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-shadow'&gt;
+                        浏览博客 &lt;i class='fa fa-arrow-right ml-2'&gt;&lt;/i&gt;
+                    &lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;!-- 博客列表 --&gt;
+        &lt;section id='blogs' class='py-16 bg-white'&gt;
+            &lt;div class='container mx-auto px-4 sm:px-6 lg:px-8'&gt;
+                &lt;div class='max-w-5xl mx-auto'&gt;
+                    &lt;div class='text-center mb-12'&gt;
+                        &lt;h2 class='text-3xl font-bold text-dark mb-2'&gt;最新博客&lt;/h2&gt;
+                        &lt;p class='text-gray-600'&gt;分享我的学习与思考&lt;/p&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class='grid grid-cols-1 md:grid-cols-2 gap-8'&gt;
+                        &lt;!-- 博客卡片1 --&gt;
+                        &lt;div class='bg-light rounded-lg overflow-hidden shadow blog-card-hover'&gt;
+                            &lt;img src='https://picsum.photos/600/400?random=1' alt='博客封面' class='w-full h-48 object-cover'&gt;
+                            &lt;div class='p-6'&gt;
+                                &lt;div class='flex items-center text-sm text-gray-500 mb-2'&gt;
+                                    &lt;span&gt;&lt;i class='fa fa-calendar-o mr-1'&gt;&lt;/i&gt; 2025-01-15&lt;/span&gt;
+                                    &lt;span class='ml-4'&gt;&lt;i class='fa fa-folder-o mr-1'&gt;&lt;/i&gt; 前端开发&lt;/span&gt;
+                                &lt;/div&gt;
+                                &lt;h3 class='text-xl font-bold mb-3 hover:text-primary transition-colors'&gt;
+                                    &lt;a href='#'&gt;Tailwind CSS快速上手与实战技巧&lt;/a&gt;
+                                &lt;/h3&gt;
+                                &lt;p class='text-gray-600 mb-4 line-clamp-3'&gt;
+                                    Tailwind CSS是一个功能优先的CSS框架，本文将介绍如何快速上手Tailwind，并分享一些在实际项目中常用的技巧和最佳实践，帮助你更高效地开发前端界面。</description><guid isPermaLink="true">https://zhaigongrui.github.io/zhai.github.io/post/zhaii-ge-ren-bo-ke.html</guid><pubDate>Sun, 14 Dec 2025 03:50:06 +0000</pubDate></item><item><title>翟的个人博客</title><link>https://zhaigongrui.github.io/zhai.github.io/post/zhai-de-ge-ren-bo-ke.html</link><description>姓名：翟公瑞
 学号：20242800005
 1.查阅视频
 2.改变环境

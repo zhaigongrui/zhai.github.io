@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="<!DOCTYPE html>
+<html lang='zh-CN'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>翟公瑞的个人博客</title>
+    <!-- 引入Tailwind CSS简化样式开发 -->
+    <script src='https://cdn.tailwindcss.com'></script>
+    <!-- 引入Font Awesome图标 -->
+    <link href='https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+    <!-- 自定义Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#475569',
+                        accent: '#f97316',
+                        light: '#f8fafc',
+                        dark: '#0f172a'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type='text/tailwindcss'>
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .blog-card-hover {
+                @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+            }
+            .nav-link {
+                @apply px-4 py-2 rounded-md hover:bg-primary/10 transition-colors duration-200;
+            }
+        }
+    </style>
+</head>
+<body class='bg-gray-50 text-dark'>
+    <!-- 导航栏 -->
+    <header class='sticky top-0 z-50 bg-white shadow-sm'>
+        <div class='container mx-auto px-4 sm:px-6 lg:px-8'>
+            <div class='flex justify-between items-center h-16'>
+                <!-- 左侧logo/名称 -->
+                <div class='flex items-center space-x-2'>
+                    <i class='fa fa-book text-primary text-2xl'></i>
+                    <div>
+                        <h1 class='text-xl font-bold text-primary'>翟公瑞的博客</h1>
+                        <p class='text-xs text-gray-500'>学号：20242800005</p>
+                    </div>
+                </div>
+                
+                <!-- 桌面端导航 -->
+                <nav class='hidden md:flex space-x-1'>
+                    <a href='#home' class='nav-link text-primary font-medium'>首页</a>
+                    <a href='#blogs' class='nav-link text-secondary'>博客列表</a>
+                    <a href='#categories' class='nav-link text-secondary'>分类</a>
+                    <a href='#about' class='nav-link text-secondary'>关于我</a>
+                </nav>
+                
+                <!-- 移动端菜单按钮 -->
+                <button id='menuBtn' class='md:hidden text-secondary hover:text-primary'>
+                    <i class='fa fa-bars text-xl'></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id='mobileMenu' class='md:hidden hidden bg-white border-t border-gray-100'>
+            <div class='container mx-auto px-4 py-2 flex flex-col space-y-1'>
+                <a href='#home' class='nav-link text-primary font-medium'>首页</a>
+                <a href='#blogs' class='nav-link text-secondary'>博客列表</a>
+                <a href='#categories' class='nav-link text-secondary'>分类</a>
+                <a href='#about' class='nav-link text-secondary'>关于我</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 首页横幅 -->
+        <section id='home' class='bg-gradient-to-r from-primary to-blue-700 text-white py-16 md:py-24'>
+            <div class='container mx-auto px-4 sm:px-6 lg:px-8'>
+                <div class='max-w-3xl mx-auto text-center'>
+                    <h2 class='text-3xl md:text-4xl lg:text-5xl font-bold mb-4'>
+                        欢迎来到翟公瑞的个人博客
+                    </h2>
+                    <p class='text-lg md:text-xl opacity-90 mb-8'>
+                        记录学习历程，分享技术心得，探索编程世界
+                    </p>
+                    <a href='#blogs' class='inline-block bg-white text-primary font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-shadow'>
+                        浏览博客 <i class='fa fa-arrow-right ml-2'></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 博客列表 -->
+        <section id='blogs' class='py-16 bg-white'>
+            <div class='container mx-auto px-4 sm:px-6 lg:px-8'>
+                <div class='max-w-5xl mx-auto'>
+                    <div class='text-center mb-12'>
+                        <h2 class='text-3xl font-bold text-dark mb-2'>最新博客</h2>
+                        <p class='text-gray-600'>分享我的学习与思考</p>
+                    </div>
+
+                    <div class='grid grid-cols-1 md:grid-cols-2 gap-8'>
+                        <!-- 博客卡片1 -->
+                        <div class='bg-light rounded-lg overflow-hidden shadow blog-card-hover'>
+                            <img src='https://picsum.photos/600/400?random=1' alt='博客封面' class='w-full h-48 object-cover'>
+                            <div class='p-6'>
+                                <div class='flex items-center text-sm text-gray-500 mb-2'>
+                                    <span><i class='fa fa-calendar-o mr-1'></i> 2025-01-15</span>
+                                    <span class='ml-4'><i class='fa fa-folder-o mr-1'></i> 前端开发</span>
+                                </div>
+                                <h3 class='text-xl font-bold mb-3 hover:text-primary transition-colors'>
+                                    <a href='#'>Tailwind CSS快速上手与实战技巧</a>
+                                </h3>
+                                <p class='text-gray-600 mb-4 line-clamp-3'>
+                                    Tailwind CSS是一个功能优先的CSS框架，本文将介绍如何快速上手Tailwind，并分享一些在实际项目中常用的技巧和最佳实践，帮助你更高效地开发前端界面。">
+<meta property="og:title" content="zhaii个人博客">
+<meta property="og:description" content="<!DOCTYPE html>
+<html lang='zh-CN'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>翟公瑞的个人博客</title>
+    <!-- 引入Tailwind CSS简化样式开发 -->
+    <script src='https://cdn.tailwindcss.com'></script>
+    <!-- 引入Font Awesome图标 -->
+    <link href='https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+    <!-- 自定义Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#475569',
+                        accent: '#f97316',
+                        light: '#f8fafc',
+                        dark: '#0f172a'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type='text/tailwindcss'>
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .blog-card-hover {
+                @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+            }
+            .nav-link {
+                @apply px-4 py-2 rounded-md hover:bg-primary/10 transition-colors duration-200;
+            }
+        }
+    </style>
+</head>
+<body class='bg-gray-50 text-dark'>
+    <!-- 导航栏 -->
+    <header class='sticky top-0 z-50 bg-white shadow-sm'>
+        <div class='container mx-auto px-4 sm:px-6 lg:px-8'>
+            <div class='flex justify-between items-center h-16'>
+                <!-- 左侧logo/名称 -->
+                <div class='flex items-center space-x-2'>
+                    <i class='fa fa-book text-primary text-2xl'></i>
+                    <div>
+                        <h1 class='text-xl font-bold text-primary'>翟公瑞的博客</h1>
+                        <p class='text-xs text-gray-500'>学号：20242800005</p>
+                    </div>
+                </div>
+                
+                <!-- 桌面端导航 -->
+                <nav class='hidden md:flex space-x-1'>
+                    <a href='#home' class='nav-link text-primary font-medium'>首页</a>
+                    <a href='#blogs' class='nav-link text-secondary'>博客列表</a>
+                    <a href='#categories' class='nav-link text-secondary'>分类</a>
+                    <a href='#about' class='nav-link text-secondary'>关于我</a>
+                </nav>
+                
+                <!-- 移动端菜单按钮 -->
+                <button id='menuBtn' class='md:hidden text-secondary hover:text-primary'>
+                    <i class='fa fa-bars text-xl'></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id='mobileMenu' class='md:hidden hidden bg-white border-t border-gray-100'>
+            <div class='container mx-auto px-4 py-2 flex flex-col space-y-1'>
+                <a href='#home' class='nav-link text-primary font-medium'>首页</a>
+                <a href='#blogs' class='nav-link text-secondary'>博客列表</a>
+                <a href='#categories' class='nav-link text-secondary'>分类</a>
+                <a href='#about' class='nav-link text-secondary'>关于我</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 首页横幅 -->
+        <section id='home' class='bg-gradient-to-r from-primary to-blue-700 text-white py-16 md:py-24'>
+            <div class='container mx-auto px-4 sm:px-6 lg:px-8'>
+                <div class='max-w-3xl mx-auto text-center'>
+                    <h2 class='text-3xl md:text-4xl lg:text-5xl font-bold mb-4'>
+                        欢迎来到翟公瑞的个人博客
+                    </h2>
+                    <p class='text-lg md:text-xl opacity-90 mb-8'>
+                        记录学习历程，分享技术心得，探索编程世界
+                    </p>
+                    <a href='#blogs' class='inline-block bg-white text-primary font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-shadow'>
+                        浏览博客 <i class='fa fa-arrow-right ml-2'></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 博客列表 -->
+        <section id='blogs' class='py-16 bg-white'>
+            <div class='container mx-auto px-4 sm:px-6 lg:px-8'>
+                <div class='max-w-5xl mx-auto'>
+                    <div class='text-center mb-12'>
+                        <h2 class='text-3xl font-bold text-dark mb-2'>最新博客</h2>
+                        <p class='text-gray-600'>分享我的学习与思考</p>
+                    </div>
+
+                    <div class='grid grid-cols-1 md:grid-cols-2 gap-8'>
+                        <!-- 博客卡片1 -->
+                        <div class='bg-light rounded-lg overflow-hidden shadow blog-card-hover'>
+                            <img src='https://picsum.photos/600/400?random=1' alt='博客封面' class='w-full h-48 object-cover'>
+                            <div class='p-6'>
+                                <div class='flex items-center text-sm text-gray-500 mb-2'>
+                                    <span><i class='fa fa-calendar-o mr-1'></i> 2025-01-15</span>
+                                    <span class='ml-4'><i class='fa fa-folder-o mr-1'></i> 前端开发</span>
+                                </div>
+                                <h3 class='text-xl font-bold mb-3 hover:text-primary transition-colors'>
+                                    <a href='#'>Tailwind CSS快速上手与实战技巧</a>
+                                </h3>
+                                <p class='text-gray-600 mb-4 line-clamp-3'>
+                                    Tailwind CSS是一个功能优先的CSS框架，本文将介绍如何快速上手Tailwind，并分享一些在实际项目中常用的技巧和最佳实践，帮助你更高效地开发前端界面。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://zhaigongrui.github.io/zhai.github.io/post/zhaii-ge-ren-bo-ke.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<title>zhaii个人博客</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">zhaii个人博客</h1>
+<div class="title-right">
+    <a href="https://zhaigongrui.github.io/zhai.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/zhaigongrui/zhai.github.io/issues/2" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody">
+
+
+    
+    
+    &lt;title&gt;翟公瑞的个人博客&lt;/title&gt;
+    
+    &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+    
+    
+    
+    &lt;script&gt;
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#475569',
+                        accent: '#f97316',
+                        light: '#f8fafc',
+                        dark: '#0f172a'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    &lt;/script&gt;
+    &lt;style type="text/tailwindcss"&gt;
+        <a class="user-mention notranslate" data-hovercard-type="organization" data-hovercard-url="/orgs/layer/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/layer">@layer</a> utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .blog-card-hover {
+                <a class="user-mention notranslate" data-hovercard-type="organization" data-hovercard-url="/orgs/apply/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/apply">@apply</a> transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+            }
+            .nav-link {
+                <a class="user-mention notranslate" data-hovercard-type="organization" data-hovercard-url="/orgs/apply/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/apply">@apply</a> px-4 py-2 rounded-md hover:bg-primary/10 transition-colors duration-200;
+            }
+        }
+    &lt;/style&gt;
+
+
+    
+    
+        <div>
+            <div>
+                
+                <div>
+                    <i></i>
+                    <div>
+                        <h1>翟公瑞的博客</h1>
+                        <p>学号：20242800005</p>
+                    </div>
+                </div>
+<pre class="notranslate"><code class="notranslate">            &lt;!-- 桌面端导航 --&gt;
+            &lt;nav class="hidden md:flex space-x-1"&gt;
+                &lt;a href="#home" class="nav-link text-primary font-medium"&gt;首页&lt;/a&gt;
+                &lt;a href="#blogs" class="nav-link text-secondary"&gt;博客列表&lt;/a&gt;
+                &lt;a href="#categories" class="nav-link text-secondary"&gt;分类&lt;/a&gt;
+                &lt;a href="#about" class="nav-link text-secondary"&gt;关于我&lt;/a&gt;
+            &lt;/nav&gt;
+            
+            &lt;!-- 移动端菜单按钮 --&gt;
+            &lt;button id="menuBtn" class="md:hidden text-secondary hover:text-primary"&gt;
+                &lt;i class="fa fa-bars text-xl"&gt;&lt;/i&gt;
+            &lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- 移动端导航菜单 --&gt;
+    &lt;div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-100"&gt;
+        &lt;div class="container mx-auto px-4 py-2 flex flex-col space-y-1"&gt;
+            &lt;a href="#home" class="nav-link text-primary font-medium"&gt;首页&lt;/a&gt;
+            &lt;a href="#blogs" class="nav-link text-secondary"&gt;博客列表&lt;/a&gt;
+            &lt;a href="#categories" class="nav-link text-secondary"&gt;分类&lt;/a&gt;
+            &lt;a href="#about" class="nav-link text-secondary"&gt;关于我&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;!-- 首页横幅 --&gt;
+    &lt;section id="home" class="bg-gradient-to-r from-primary to-blue-700 text-white py-16 md:py-24"&gt;
+        &lt;div class="container mx-auto px-4 sm:px-6 lg:px-8"&gt;
+            &lt;div class="max-w-3xl mx-auto text-center"&gt;
+                &lt;h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"&gt;
+                    欢迎来到翟公瑞的个人博客
+                &lt;/h2&gt;
+                &lt;p class="text-lg md:text-xl opacity-90 mb-8"&gt;
+                    记录学习历程，分享技术心得，探索编程世界
+                &lt;/p&gt;
+                &lt;a href="#blogs" class="inline-block bg-white text-primary font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-shadow"&gt;
+                    浏览博客 &lt;i class="fa fa-arrow-right ml-2"&gt;&lt;/i&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- 博客列表 --&gt;
+    &lt;section id="blogs" class="py-16 bg-white"&gt;
+        &lt;div class="container mx-auto px-4 sm:px-6 lg:px-8"&gt;
+            &lt;div class="max-w-5xl mx-auto"&gt;
+                &lt;div class="text-center mb-12"&gt;
+                    &lt;h2 class="text-3xl font-bold text-dark mb-2"&gt;最新博客&lt;/h2&gt;
+                    &lt;p class="text-gray-600"&gt;分享我的学习与思考&lt;/p&gt;
+                &lt;/div&gt;
+
+                &lt;div class="grid grid-cols-1 md:grid-cols-2 gap-8"&gt;
+                    &lt;!-- 博客卡片1 --&gt;
+                    &lt;div class="bg-light rounded-lg overflow-hidden shadow blog-card-hover"&gt;
+                        &lt;img src="https://picsum.photos/600/400?random=1" alt="博客封面" class="w-full h-48 object-cover"&gt;
+                        &lt;div class="p-6"&gt;
+                            &lt;div class="flex items-center text-sm text-gray-500 mb-2"&gt;
+                                &lt;span&gt;&lt;i class="fa fa-calendar-o mr-1"&gt;&lt;/i&gt; 2025-01-15&lt;/span&gt;
+                                &lt;span class="ml-4"&gt;&lt;i class="fa fa-folder-o mr-1"&gt;&lt;/i&gt; 前端开发&lt;/span&gt;
+                            &lt;/div&gt;
+                            &lt;h3 class="text-xl font-bold mb-3 hover:text-primary transition-colors"&gt;
+                                &lt;a href="#"&gt;Tailwind CSS快速上手与实战技巧&lt;/a&gt;
+                            &lt;/h3&gt;
+                            &lt;p class="text-gray-600 mb-4 line-clamp-3"&gt;
+                                Tailwind CSS是一个功能优先的CSS框架，本文将介绍如何快速上手Tailwind，并分享一些在实际项目中常用的技巧和最佳实践，帮助你更高效地开发前端界面。
+                            &lt;/p&gt;
+                            &lt;a href="#" class="text-primary font-medium hover:underline"&gt;
+                                阅读更多 &lt;i class="fa fa-angle-right ml-1"&gt;&lt;/i&gt;
+                            &lt;/a&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;!-- 博客卡片2 --&gt;
+                    &lt;div class="bg-light rounded-lg overflow-hidden shadow blog-card-hover"&gt;
+                        &lt;img src="https://picsum.photos/600/400?random=2" alt="博客封面" class="w-full h-48 object-cover"&gt;
+                        &lt;div class="p-6"&gt;
+                            &lt;div class="flex items-center text-sm text-gray-500 mb-2"&gt;
+                                &lt;span&gt;&lt;i class="fa fa-calendar-o mr-1"&gt;&lt;/i&gt; 2025-01-10&lt;/span&gt;
+                                &lt;span class="ml-4"&gt;&lt;i class="fa fa-folder-o mr-1"&gt;&lt;/i&gt; JavaScript&lt;/span&gt;
+                            &lt;/div&gt;
+                            &lt;h3 class="text-xl font-bold mb-3 hover:text-primary transition-colors"&gt;
+                                &lt;a href="#"&gt;JavaScript异步编程全解析&lt;/a&gt;
+                            &lt;/h3&gt;
+                            &lt;p class="text-gray-600 mb-4 line-clamp-3"&gt;
+                                从回调函数到Promise，再到async/await，本文详细解析JavaScript异步编程的发展历程和各种实现方式，帮助你彻底理解异步编程的核心思想。
+                            &lt;/p&gt;
+                            &lt;a href="#" class="text-primary font-medium hover:underline"&gt;
+                                阅读更多 &lt;i class="fa fa-angle-right ml-1"&gt;&lt;/i&gt;
+                            &lt;/a&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;!-- 博客卡片3 --&gt;
+                    &lt;div class="bg-light rounded-lg overflow-hidden shadow blog-card-hover"&gt;
+                        &lt;img src="https://picsum.photos/600/400?random=3" alt="博客封面" class="w-full h-48 object-cover"&gt;
+                        &lt;div class="p-6"&gt;
+                            &lt;div class="flex items-center text-sm text-gray-500 mb-2"&gt;
+                                &lt;span&gt;&lt;i class="fa fa-calendar-o mr-1"&gt;&lt;/i&gt; 2025-01-05&lt;/span&gt;
+                                &lt;span class="ml-4"&gt;&lt;i class="fa fa-folder-o mr-1"&gt;&lt;/i&gt; 学习心得&lt;/span&gt;
+                            &lt;/div&gt;
+                            &lt;h3 class="text-xl font-bold mb-3 hover:text-primary transition-colors"&gt;
+                                &lt;a href="#"&gt;计算机专业入门学习路线分享&lt;/a&gt;
+                            &lt;/h3&gt;
+                            &lt;p class="text-gray-600 mb-4 line-clamp-3"&gt;
+                                作为一名计算机专业的新生，结合自己的学习经验，整理了一份从入门到进阶的学习路线，涵盖编程语言、算法、计算机基础等多个方面，希望能帮助到同专业的同学。
+                            &lt;/p&gt;
+                            &lt;a href="#" class="text-primary font-medium hover:underline"&gt;
+                                阅读更多 &lt;i class="fa fa-angle-right ml-1"&gt;&lt;/i&gt;
+                            &lt;/a&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;!-- 博客卡片4 --&gt;
+                    &lt;div class="bg-light rounded-lg overflow-hidden shadow blog-card-hover"&gt;
+                        &lt;img src="https://picsum.photos/600/400?random=4" alt="博客封面" class="w-full h-48 object-cover"&gt;
+                        &lt;div class="p-6"&gt;
+                            &lt;div class="flex items-center text-sm text-gray-500 mb-2"&gt;
+                                &lt;span&gt;&lt;i class="fa fa-calendar-o mr-1"&gt;&lt;/i&gt; 2025-01-01&lt;/span&gt;
+                                &lt;span class="ml-4"&gt;&lt;i class="fa fa-folder-o mr-1"&gt;&lt;/i&gt; 工具使用&lt;/span&gt;
+                            &lt;/div&gt;
+                            &lt;h3 class="text-xl font-bold mb-3 hover:text-primary transition-colors"&gt;
+                                &lt;a href="#"&gt;Git与GitHub常用操作指南&lt;/a&gt;
+                            &lt;/h3&gt;
+                            &lt;p class="text-gray-600 mb-4 line-clamp-3"&gt;
+                                本文总结了Git和GitHub的常用操作命令和使用技巧，包括版本控制、分支管理、提交规范、远程仓库操作等，适合初学者快速掌握版本控制工具的使用。
+                            &lt;/p&gt;
+                            &lt;a href="#" class="text-primary font-medium hover:underline"&gt;
+                                阅读更多 &lt;i class="fa fa-angle-right ml-1"&gt;&lt;/i&gt;
+                            &lt;/a&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class="text-center mt-10"&gt;
+                    &lt;button class="px-6 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors"&gt;
+                        加载更多 &lt;i class="fa fa-refresh ml-1"&gt;&lt;/i&gt;
+                    &lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- 分类板块 --&gt;
+    &lt;section id="categories" class="py-16 bg-gray-50"&gt;
+        &lt;div class="container mx-auto px-4 sm:px-6 lg:px-8"&gt;
+            &lt;div class="max-w-5xl mx-auto"&gt;
+                &lt;div class="text-center mb-12"&gt;
+                    &lt;h2 class="text-3xl font-bold text-dark mb-2"&gt;博客分类&lt;/h2&gt;
+                    &lt;p class="text-gray-600"&gt;按主题浏览我的博客内容&lt;/p&gt;
+                &lt;/div&gt;
+
+                &lt;div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"&gt;
+                    &lt;!-- 分类卡片1 --&gt;
+                    &lt;div class="bg-white rounded-lg p-6 text-center shadow hover:shadow-md transition-shadow"&gt;
+                        &lt;div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"&gt;
+                            &lt;i class="fa fa-code text-primary text-xl"&gt;&lt;/i&gt;
+                        &lt;/div&gt;
+                        &lt;h3 class="font-bold mb-2"&gt;前端开发&lt;/h3&gt;
+                        &lt;p class="text-gray-600 text-sm"&gt;12篇文章&lt;/p&gt;
+                    &lt;/div&gt;
+
+                    &lt;!-- 分类卡片2 --&gt;
+                    &lt;div class="bg-white rounded-lg p-6 text-center shadow hover:shadow-md transition-shadow"&gt;
+                        &lt;div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"&gt;
+                            &lt;i class="fa fa-server text-green-600 text-xl"&gt;&lt;/i&gt;
+                        &lt;/div&gt;
+                        &lt;h3 class="font-bold mb-2"&gt;后端开发&lt;/h3&gt;
+                        &lt;p class="text-gray-600 text-sm"&gt;8篇文章&lt;/p&gt;
+                    &lt;/div&gt;
+
+                    &lt;!-- 分类卡片3 --&gt;
+                    &lt;div class="bg-white rounded-lg p-6 text-center shadow hover:shadow-md transition-shadow"&gt;
+                        &lt;div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4"&gt;
+                            &lt;i class="fa fa-book text-purple-600 text-xl"&gt;&lt;/i&gt;
+                        &lt;/div&gt;
+                        &lt;h3 class="font-bold mb-2"&gt;学习心得&lt;/h3&gt;
+                        &lt;p class="text-gray-600 text-sm"&gt;15篇文章&lt;/p&gt;
+                    &lt;/div&gt;
+
+                    &lt;!-- 分类卡片4 --&gt;
+                    &lt;div class="bg-white rounded-lg p-6 text-center shadow hover:shadow-md transition-shadow"&gt;
+                        &lt;div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4"&gt;
+                            &lt;i class="fa fa-wrench text-accent text-xl"&gt;&lt;/i&gt;
+                        &lt;/div&gt;
+                        &lt;h3 class="font-bold mb-2"&gt;工具使用&lt;/h3&gt;
+                        &lt;p class="text-gray-600 text-sm"&gt;6篇文章&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- 关于我 --&gt;
+    &lt;section id="about" class="py-16 bg-white"&gt;
+        &lt;div class="container mx-auto px-4 sm:px-6 lg:px-8"&gt;
+            &lt;div class="max-w-4xl mx-auto"&gt;
+                &lt;div class="text-center mb-12"&gt;
+                    &lt;h2 class="text-3xl font-bold text-dark mb-2"&gt;关于我&lt;/h2&gt;
+                    &lt;p class="text-gray-600"&gt;认识一个真实的翟公瑞&lt;/p&gt;
+                &lt;/div&gt;
+
+                &lt;div class="flex flex-col md:flex-row items-center gap-8"&gt;
+                    &lt;div class="w-full md:w-1/3"&gt;
+                        &lt;div class="relative"&gt;
+                            &lt;img src="https://picsum.photos/400/400?random=10" alt="个人头像" class="w-64 h-64 object-cover rounded-full mx-auto border-4 border-primary/20"&gt;
+                            &lt;div class="absolute -bottom-4 -right-4 bg-accent text-white w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold"&gt;
+                                2024
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="w-full md:w-2/3"&gt;
+                        &lt;div class="bg-light p-8 rounded-lg shadow"&gt;
+                            &lt;h3 class="text-2xl font-bold mb-4"&gt;翟公瑞&lt;/h3&gt;
+                            &lt;p class="text-gray-700 mb-2"&gt;&lt;span class="font-medium"&gt;学号：&lt;/span&gt;20242800005&lt;/p&gt;
+                            &lt;p class="text-gray-700 mb-4"&gt;&lt;span class="font-medium"&gt;专业：&lt;/span&gt;计算机科学与技术&lt;/p&gt;
+                            
+                            &lt;p class="text-gray-600 mb-6"&gt;
+                                大家好，我是翟公瑞，一名计算机专业的学生，热爱编程和技术探索。
+                                我创建这个博客的初衷是记录自己的学习历程，分享所学的知识和遇到的问题，
+                                同时也希望能和更多的技术爱好者交流学习，共同进步。
+                            &lt;/p&gt;
+
+                            &lt;div class="flex flex-wrap gap-4 mb-6"&gt;
+                                &lt;span class="px-3 py-1 bg-blue-100 text-primary rounded-full text-sm"&gt;HTML/CSS&lt;/span&gt;
+                                &lt;span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"&gt;JavaScript&lt;/span&gt;
+                                &lt;span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm"&gt;Python&lt;/span&gt;
+                                &lt;span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm"&gt;Git&lt;/span&gt;
+                            &lt;/div&gt;
+
+                            &lt;div class="flex space-x-4"&gt;
+                                &lt;a href="#" class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-blue-700 transition-colors"&gt;
+                                    &lt;i class="fa fa-github"&gt;&lt;/i&gt;
+                                &lt;/a&gt;
+                                &lt;a href="#" class="w-10 h-10 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition-colors"&gt;
+                                    &lt;i class="fa fa-weibo"&gt;&lt;/i&gt;
+                                &lt;/a&gt;
+                                &lt;a href="#" class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"&gt;
+                                    &lt;i class="fa fa-wechat"&gt;&lt;/i&gt;
+                                &lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+&lt;/main&gt;
+
+&lt;!-- 页脚 --&gt;
+&lt;footer class="bg-dark text-white py-12"&gt;
+    &lt;div class="container mx-auto px-4 sm:px-6 lg:px-8"&gt;
+        &lt;div class="max-w-5xl mx-auto"&gt;
+            &lt;div class="flex flex-col md:flex-row justify-between items-center mb-8"&gt;
+                &lt;div class="mb-6 md:mb-0"&gt;
+                    &lt;div class="flex items-center space-x-2"&gt;
+                        &lt;i class="fa fa-book text-primary text-2xl"&gt;&lt;/i&gt;
+                        &lt;span class="text-xl font-bold"&gt;翟公瑞的博客&lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;p class="text-gray-400 mt-2"&gt;学号：20242800005&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="flex space-x-6"&gt;
+                    &lt;a href="#home" class="text-gray-400 hover:text-white transition-colors"&gt;首页&lt;/a&gt;
+                    &lt;a href="#blogs" class="text-gray-400 hover:text-white transition-colors"&gt;博客&lt;/a&gt;
+                    &lt;a href="#categories" class="text-gray-400 hover:text-white transition-colors"&gt;分类&lt;/a&gt;
+                    &lt;a href="#about" class="text-gray-400 hover:text-white transition-colors"&gt;关于我&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="border-t border-gray-800 pt-8 text-center text-gray-400"&gt;
+                &lt;p&gt;© 2025 翟公瑞的个人博客. 保留所有权利.&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;
+
+&lt;!-- JavaScript --&gt;
+&lt;script&gt;
+    // 移动端菜单切换
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    menuBtn.addEventListener('click', () =&gt; {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor =&gt; {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // 关闭移动端菜单
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            }
+        });
+    });
+
+    // 滚动时导航栏样式变化
+    window.addEventListener('scroll', () =&gt; {
+        const header = document.querySelector('header');
+        if (window.scrollY &gt; 50) {
+            header.classList.add('shadow');
+        } else {
+            header.classList.remove('shadow');
+        }
+    });
+&lt;/script&gt;
+</code></pre>
+
+</div></div></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://zhaigongrui.github.io/zhai.github.io">Blog Title</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if(""!=""){
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","zhaigongrui/zhai.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+
+
+</html>
